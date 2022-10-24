@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Image,
   Pressable,
-  Modal,
+  //Modal,
   StatusBar,
 } from 'react-native';
 
@@ -15,12 +15,20 @@ import ImagePicker from 'react-native-image-crop-picker';
 import Images from '../../theme/Images';
 import {Icon, Avatar, Header, HeaderProps, SpeedDial} from '@rneui/themed';
 
-import {Actionsheet, useDisclose, Box, Skeleton, Center} from 'native-base';
+import {
+  Actionsheet,
+  useDisclose,
+  Box,
+  Skeleton,
+  Center,
+  VStack,
+} from 'native-base';
+
+import Modal from 'react-native-modal';
 
 const ProfileInformation = () => {
   const [loaded, setLoaded] = useState(false);
   const [open, setOpen] = React.useState(false);
-
 
   setTimeout(() => {
     setLoaded(true);
@@ -70,10 +78,13 @@ const ProfileInformation = () => {
         <Header
           backgroundColor="gray"
           statusBarProps={{backgroundColor: 'black'}}
-          leftComponent={{
-            icon: 'menu',
-            color: '#fff',
-          }}
+          leftComponent={
+            <Icon
+              name="menu"
+              color={'white'}
+              onPress={() => setModalVisible(!isVisible)}
+            />
+          }
           rightComponent={<Icon name="notifications" color="white" />}
           centerComponent={{
             text: 'Header',
@@ -157,7 +168,8 @@ const ProfileInformation = () => {
                     name="photo-camera"
                     //type='evilicons'
                     color={'black'}
-                    onPress={onOpen}
+                    //onPress={onOpen} //for ActionSheet
+                    onPress={() => setModalVisible(!isVisible)} //for Modal
                     //source={{uri: 'https://randomuser.me/api/portraits/men/9.jpg'}}
                     size={50}
                   />
@@ -250,23 +262,66 @@ const ProfileInformation = () => {
           </Actionsheet.Content>
         </Actionsheet>
 
-        <SpeedDial buttonStyle={{backgroundColor:'#F61962'}}
+        <SpeedDial
+          buttonStyle={{backgroundColor: '#F61962'}}
           isOpen={open}
-          icon={{name: 'edit', color: '#fff',}}
+          icon={{name: 'edit', color: '#fff'}}
           openIcon={{name: 'close', color: '#fff'}}
           onOpen={() => setOpen(!open)}
           onClose={() => setOpen(!open)}>
           <SpeedDial.Action
-            icon={{name:"camera", color:'white' ,type:"fontawesome" }}
+            icon={{name: 'camera', color: 'white', type: 'fontawesome'}}
             title="Camera"
             onPress={() => openCamera()}
           />
           <SpeedDial.Action
             icon={{name: 'photo', color: '#fff'}}
             title="Gallery"
-            onPress={() => openGallery() }
+            onPress={() => openGallery()}
           />
         </SpeedDial>
+
+        <Modal
+          animationIn={'slideInLeft'}
+          animationOut={'slideOutLeft'}
+          animationInTiming={300}
+          coverScreen={false}
+          backdropOpacity={0.3}
+          swipeDirection="left"
+          onSwipeComplete={() => setModalVisible(!isVisible)}
+          onBackdropPress={() => setModalVisible(!isVisible)}
+          isVisible={isVisible}>
+          <View style={styles.modalContainer}>
+            <Image
+              borderRadius={100}
+              style={{alignSelf: 'center', height: 150, width: 150}}
+              source={Images.pofileoff}
+            />
+            <Box
+              h={150}
+              w={200}
+              alignSelf={'center'}
+              justifyContent={'space-between'}>
+              <Pressable onPress={() => openCamera()} style={styles.modalBtn}>
+                <Text style={{color: 'white', fontWeight: 'bold'}}>
+                  Take Picture
+                </Text>
+              </Pressable>
+              <Pressable onPress={() => openGallery()} style={styles.modalBtn}>
+                <Text style={{color: 'white', fontWeight: 'bold'}}>
+                  Upload from Gallery
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() => {
+                  setModalVisible(!isVisible);
+                }}
+                style={{...styles.modalBtn, backgroundColor: 'white'}}>
+                <Text style={{color: 'black', fontWeight: 'bold'}}>Cancel</Text>
+              </Pressable>
+            </Box>
+          </View>
+        </Modal>
 
         {/* <Modal animationType="slide" transparent={true} visible={isVisible}>
         <View style={styles.modalContainer}>
@@ -335,22 +390,29 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   modalContainer: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    left: 0,
-    height: 250,
-    alignItems: 'center',
-    backgroundColor: 'gray',
-    justifyContent: 'space-between',
+    //flex: 1,
+    //position: 'absolute',
+    // bottom: 0,
+    // right: 0,
+    // left: 0,
+    height: '110%',
+    alignItems: 'flex-start',
+    backgroundColor: 'black',
+    justifyContent: 'space-around',
     padding: 10,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    width: '80%',
+    //height: '100%',
+    left: -20,
+    //bottom: -20,
+    top: 0,
+    //borderTopLeftRadius: 20,
+    //borderTopRightRadius: 20,
   },
   modalBtn: {
+    alignSelf: 'center',
     borderRadius: 10,
     padding: 10,
-    width: 250,
+    width: 150,
     backgroundColor: '#2596be',
     justifyContent: 'center',
     alignItems: 'center',
