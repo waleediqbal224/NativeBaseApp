@@ -1,5 +1,6 @@
-import {Button} from 'native-base';
+import {Button, Center} from 'native-base';
 import React, {useState} from 'react';
+import {Avatar, Icon} from '@rneui/themed';
 
 import {
   View,
@@ -49,8 +50,27 @@ const Signup = props => {
         }}>
         <Image
           source={Images.splashImg}
-          style={{alignSelf: 'center', height: 93, width: 93}}
+          style={{alignSelf: 'center', height: 100, width: 100}}
         />
+        {/* <Center>
+          <Avatar
+            size={84}
+            rounded
+            source={{uri: 'https://randomuser.me/api/portraits/men/9.jpg'}}
+            title="AJ"
+            containerStyle={{backgroundColor: 'grey'}}>
+            <Avatar.Accessory
+            name='photo-camera'
+            //type='evilicons'
+            color={'black'}
+            onPress={()=>alert('shj')}
+            
+              //source={{uri: 'https://randomuser.me/api/portraits/men/9.jpg'}}
+              size={23}
+            />
+          </Avatar>
+        </Center> */}
+
         <View style={{marginTop: 30, marginBottom: 30}}>
           <Text style={styles.labels}>First name</Text>
 

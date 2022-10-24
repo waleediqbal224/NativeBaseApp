@@ -1,11 +1,17 @@
 import {Center, Image, HStack, VStack, Box, Button} from 'native-base';
 import React from 'react';
 import {View, StyleSheet, Text, Pressable} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import Images from '../../theme/Images';
 
 const PortalScreen = props => {
   return (
-    <Center flex={1} bg={'white'}>
+    // <Center flex={1} bg={'white'}>
+    <LinearGradient
+      colors={[ '#17CBC9','#F61962']}
+      start={{x: 0, y: 0.5}}
+      end={{x: 0.5, y: 1}}
+      style={{flex: 1, alignItems: 'center'}}>
       <HStack alignItems={'center'} mt={30}>
         <Image alt="smallLogo" source={Images.logo} h={28} w={28} />
         <Text
@@ -51,10 +57,18 @@ const PortalScreen = props => {
         </Box>
       </VStack>
       <VStack h={120} justifyContent={'space-evenly'}>
-        <Button bg={'#F61962'} w={280} _text={{fontWeight: 'bold'}} onPress={()=>props.navigation.navigate('Login')} >
+        <Button
+          bg={'#F61962'}
+          w={280}
+          _text={{fontWeight: 'bold'}}
+          onPress={() => props.navigation.navigate('Login')}>
           Log In
         </Button>
-        <Button bg={'#17CBC9'} w={280} _text={{fontWeight: 'bold'}} onPress={()=>props.navigation.navigate('Signup')} >
+        <Button
+          bg={'#17CBC9'}
+          w={280}
+          _text={{fontWeight: 'bold'}}
+          onPress={() => props.navigation.navigate('Signup')}>
           Sign Up
         </Button>
       </VStack>
@@ -63,8 +77,9 @@ const PortalScreen = props => {
         style={{height: 190, width: '100%'}}
         source={Images.last}
       />
-    </Center>
+    </LinearGradient>
   );
 };
 
 export default PortalScreen;
+

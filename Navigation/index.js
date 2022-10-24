@@ -9,6 +9,8 @@ import Login from '../new-screens/Login';
 import Signup from '../new-screens/Signup';
 import ProfileInformation from '../new-screens/profileInformation';
 
+import TabNavigation from './TabNavigation';
+
 const Navigation = props => {
   const Stack = createNativeStackNavigator();
   return (
@@ -22,11 +24,12 @@ const Navigation = props => {
           name="Onboarding"
           component={Onboarding}
         />
-        <Stack.Screen
+        <Stack.Screen name='TabNavigation' component={TabNavigation} />
+        {/* <Stack.Screen
           name="PortalScreen"
           component={PortalScreen}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           name="Login"
           component={Login}
         />
@@ -37,8 +40,9 @@ const Navigation = props => {
         <Stack.Screen
           name="ProfileInformation"
           component={ProfileInformation}
-        />
+        /> */}
       </Stack.Navigator>
+      
     </NavigationContainer>
   );
 };

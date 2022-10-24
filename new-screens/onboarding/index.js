@@ -1,12 +1,8 @@
 import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Image,
-  
-} from 'react-native';
+import {StyleSheet, Image, Pressable} from 'react-native';
 import Swiper from 'react-native-swiper';
 import Images from '../../theme/Images';
-
+import LinearGradient from 'react-native-linear-gradient';
 import {Center, Circle, HStack, VStack, Text, Box, Button} from 'native-base';
 
 const Dot = () => {
@@ -77,7 +73,12 @@ const Onboarding = props => {
   ];
 
   return (
-    <Center bg={'white'} flex={1}>
+    // <Center bg={'white'} flex={1}>
+    <LinearGradient
+      colors={['#e96443', '#904e95']}
+      style={{flex: 1, alignItems: 'center'}}
+      start={{x: 0, y: 0}}
+      end={{x: 1, y: 1}}>
       <HStack alignItems={'center'} mt={30}>
         <Image source={Images.logo} style={styles.logo} />
         <Text
@@ -132,16 +133,28 @@ const Onboarding = props => {
           );
         })}
       </Swiper>
-
-      <VStack
-        bg={'#5D5D61'}
-        justifyContent={'space-evenly'}
-        h={180}
-        w={'100%'}
-        alignItems={'center'}
-        p={10}
-        borderTopLeftRadius={20}
-        borderTopRightRadius={20}>
+      <LinearGradient
+        colors={['#000000', '#434343']}
+        style={{
+          alignItems: 'center',
+          padding: 10,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          height: 180,
+          justifyContent: 'space-evenly',
+          width: '100%',
+        }}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 1}}>
+        {/* <VStack
+          bg={'#5D5D61'}
+          justifyContent={'space-evenly'}
+          h={180}
+          w={'100%'}
+          alignItems={'center'}
+          p={10}
+          borderTopLeftRadius={20}
+          borderTopRightRadius={20}> */}
         <Button
           bg={'white'}
           _text={{color: 'black', fontWeight: 'bold'}}
@@ -149,15 +162,32 @@ const Onboarding = props => {
           w={280}>
           Next
         </Button>
-        <Button
-          onPress={()=>props.navigation.navigate('PortalScreen')}
+        <LinearGradient
+          colors={['#4ca1af', '#c4e0e5']}
+          style={{
+            alignItems: 'center',
+            padding: 10,
+            borderRadius: 5,
+            //height: 180,
+            justifyContent: 'space-evenly',
+            width: 280,
+          }}
+          start={{x: 0, y: 0}}
+          end={{x: 1, y: 1}}>
+          <Pressable onPress={() => props.navigation.navigate('TabNavigation')}>
+            <Text>Get Started</Text>
+          </Pressable>
+        </LinearGradient>
+        {/* <Button
+          onPress={() => props.navigation.navigate('PortalScreen')}
           bg={'#17CBC9'}
           _text={{color: 'white', fontWeight: 'bold'}}
           w={280}>
           Get Started
-        </Button>
-      </VStack>
-    </Center>
+        </Button> */}
+        {/* </VStack> */}
+      </LinearGradient>
+    </LinearGradient>
   );
 };
 

@@ -5,12 +5,17 @@ import Images from '../../theme/Images';
 import {
   Image,
   HStack,
+  Stack,
   Text,
   Center,
   Box,
   Divider,
   Button,
+  FormControl,
+  Input,
+  WarningOutlineIcon,
 } from 'native-base';
+import {Icon} from '@rneui/themed';
 
 const Login = props => {
   const [isChecked, setChecked] = useState(false);
@@ -30,7 +35,11 @@ const Login = props => {
         alignSelf={'center'}>
         Login Account
       </Text>
-      <Center flex={1} bg={'#FFFFFF'} borderRadius={20}>
+      <Center
+        flex={1}
+        bg={'#FFFFFF'}
+        borderTopLeftRadius={20}
+        borderTopRightRadius={20}>
         <Image
           alt="logo"
           h={93}
@@ -39,7 +48,25 @@ const Login = props => {
           source={Images.splashImg}
         />
         <Box mb={4} w={'90%'} mt={8}>
-          <Text style={styles.labels}>Email</Text>
+          <FormControl isRequired>
+            <Stack mx="4">
+              <FormControl.Label>Email</FormControl.Label>
+              <Input
+                flex={1}
+                type="email"
+                //defaultValue="12345"
+                placeholder="email"
+              />
+              <FormControl.HelperText>
+                Enter a valid email.
+              </FormControl.HelperText>
+              <FormControl.ErrorMessage
+                leftIcon={<WarningOutlineIcon size="xs" />}>
+                Enter a valid email.
+              </FormControl.ErrorMessage>
+            </Stack>
+          </FormControl>
+          {/* <Text style={styles.labels}>Email</Text>
           <HStack
             px={2}
             alignItems={'center'}
@@ -54,8 +81,26 @@ const Login = props => {
               color={'black'}
             />
           </HStack>
-          <Text style={styles.labels}>Password</Text>
-          <HStack
+          <Text style={styles.labels}>Password</Text> */}
+          <FormControl isRequired>
+            <Stack mx="4">
+              <FormControl.Label>Password</FormControl.Label>
+              <Input
+                flex={1}
+                type="password"
+                //defaultValue="12345"
+                placeholder="password"
+              />
+              <FormControl.HelperText>
+                Must be atleast 6 characters.
+              </FormControl.HelperText>
+              <FormControl.ErrorMessage
+                leftIcon={<WarningOutlineIcon size="xs" />}>
+                Atleast 6 characters are required.
+              </FormControl.ErrorMessage>
+            </Stack>
+          </FormControl>
+          {/* <HStack
             px={2}
             borderRadius={7}
             borderWidth={2}
@@ -80,7 +125,7 @@ const Login = props => {
                 style={{width: 16, height: 16, resizeMode: 'contain'}}
               />
             </Pressable>
-          </HStack>
+          </HStack> */}
         </Box>
 
         <HStack
@@ -141,24 +186,34 @@ const Login = props => {
           _text={{color: 'white', fontWeight: 'bold'}}
           onPress={() => {
             setLoading(!isLoading);
-            setTimeout(() => {
-              setLoading(false);
-              props.navigation.navigate('ProfileInformation');
-            }, 2000);
+            !isLoading
+              ? setTimeout(() => {
+                  setLoading(false);
+                  props.navigation.navigate('ProfileInformation');
+                }, 2000)
+              : null;
           }}>
           Log In
         </Button>
 
-        <HStack w={180} justifyContent={'space-evenly'} my={3}>
-          <Pressable>
-            <Image alt="linkdin" source={Images.linkdin} h={44} w={44} />
-          </Pressable>
-          <Pressable>
-            <Image alt="apple" source={Images.apple} h={44} w={44} />
-          </Pressable>
-          <Pressable>
-            <Image alt="facebook" source={Images.facebook} h={44} w={44} />
-          </Pressable>
+        <HStack
+          alignItems={'center'}
+          w={180}
+          justifyContent={'space-evenly'}
+          my={3}>
+          <Icon
+            size={44}
+            color={'#E60023'}
+            name="pinterest-with-circle"
+            type="entypo"
+          />
+          <Icon
+            size={44}
+            color={'#0077B5'}
+            name="facebook-square"
+            type="antdesign"
+          />
+          <Icon size={44} color={'#1DA1F2'} name="twitter" type="antdesign" />
         </HStack>
         <HStack>
           <Text style={styles.lastText}>Don’t have an account ? </Text>
