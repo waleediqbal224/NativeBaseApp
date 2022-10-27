@@ -45,7 +45,8 @@ const Signup = props => {
           flex: 1,
           paddingTop: 10,
           backgroundColor: '#FFFFFF',
-          borderRadius: 20,
+          borderTopLeftRadius:20,
+          borderTopRightRadius:20,
           paddingBottom: 50,
         }}>
         <Image
