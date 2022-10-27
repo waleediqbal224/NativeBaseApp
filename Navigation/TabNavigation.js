@@ -19,15 +19,20 @@ export default function TabNavigation() {
           if (route.name === 'Login') {
             iconName = focused ? 'login' : 'login';
           } else if (route.name === 'Signup') {
-            iconName = focused
-              ? 'app-registration'
-              : 'app-registration';
+            iconName = focused ? 'app-registration' : 'app-registration';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person';
           }
 
           // You can return any component that you like here!
-          return <Icon type='MaterialIcons' name={iconName} size={size} color={color} />;
+          return (
+            <Icon
+              type="MaterialIcons"
+              name={iconName}
+              size={size}
+              color={color}
+            />
+          );
         },
         headerShown: false,
         tabBarActiveTintColor: 'tomato',
