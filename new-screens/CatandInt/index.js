@@ -12,8 +12,6 @@ import {
 import Images from '../../theme/Images';
 
 const CatandInt = props => {
-
-
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedInterest, setSelectedInterest] = useState([]);
 
@@ -248,10 +246,10 @@ const CatandInt = props => {
     }
   };
   const interestClick = item => {
-    if (!selectedInterest.includes(item.interest)) {
-      setSelectedInterest([...selectedInterest, item.interest]);
+    if (!selectedInterest.includes(item.id)) {
+      setSelectedInterest([...selectedInterest, item.id]);
     } else {
-      const filterData = selectedInterest.filter(value => value !== item.interest);
+      const filterData = selectedInterest.filter(value => value !== item.id);
       setSelectedInterest(filterData);
     }
   };
@@ -352,13 +350,13 @@ const CatandInt = props => {
                 marginBottom: 10,
                 marginRight: 3,
                 borderWidth: 1,
-                borderColor: selectedInterest.includes(item.interest)
+                borderColor: selectedInterest.includes(item.id)
                   ? '#F61962'
                   : '#CFD3E4',
               }}>
               <Text
                 style={{
-                  color: selectedInterest.includes(item.interest)
+                  color: selectedInterest.includes(item.id)
                     ? '#F61962'
                     : 'black',
                   fontSize: 8,
