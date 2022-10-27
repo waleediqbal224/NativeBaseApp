@@ -248,10 +248,10 @@ const CatandInt = props => {
     }
   };
   const interestClick = item => {
-    if (!selectedInterest.includes(item.name)) {
-      setSelectedInterest([...selectedInterest, item.name]);
+    if (!selectedInterest.includes(item.interest)) {
+      setSelectedInterest([...selectedInterest, item.interest]);
     } else {
-      const filterData = selectedInterest.filter(value => value !== item.name);
+      const filterData = selectedInterest.filter(value => value !== item.interest);
       setSelectedInterest(filterData);
     }
   };
@@ -317,7 +317,7 @@ const CatandInt = props => {
                     fontSize: 10,
                     fontWeight: '600',
                   }}>
-                  {item.first_name}
+                  {item.name}
                 </Text>
               </View>
             </Pressable>
@@ -352,20 +352,20 @@ const CatandInt = props => {
                 marginBottom: 10,
                 marginRight: 3,
                 borderWidth: 1,
-                borderColor: selectedInterest.includes(item.name)
+                borderColor: selectedInterest.includes(item.interest)
                   ? '#F61962'
                   : '#CFD3E4',
               }}>
               <Text
                 style={{
-                  color: selectedInterest.includes(item.name)
+                  color: selectedInterest.includes(item.interest)
                     ? '#F61962'
                     : 'black',
                   fontSize: 8,
                   fontWeight: '600',
                   marginHorizontal: 5,
                 }}>
-                {item.name}
+                {item.interest}
               </Text>
             </View>
           </Pressable>

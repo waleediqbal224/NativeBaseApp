@@ -25,7 +25,9 @@ const Login = props => {
   const [password, setPasword] = useState('');
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}>
       <Text
         mt={20}
         mb={10}
@@ -39,7 +41,8 @@ const Login = props => {
         flex={1}
         bg={'#FFFFFF'}
         borderTopLeftRadius={20}
-        borderTopRightRadius={20}>
+        borderTopRightRadius={20}
+        pb={50}>
         <Image
           alt="logo"
           h={93}

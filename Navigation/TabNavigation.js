@@ -16,7 +16,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {Center} from 'native-base';
+import {Center, Circle} from 'native-base';
 
 // export default function TabNavigation(props) {
 //   const Tab = createBottomTabNavigator();
@@ -312,6 +312,49 @@ export default function TabNavigation(props) {
       />
       <Tab.Screen name="Signup" component={Signup} />
       <Tab.Screen
+        name="Modal"
+        component={Signup}
+        options={{
+          tabBarIcon: ({color}) => (
+            <TouchableOpacity
+              style={{
+                justifyContent: 'center',
+                alignItems: 'center',
+                position: 'absolute',
+              }}
+              //onPress={() => setIsModalVisible(!isModalVisible)}
+            >
+              <Circle
+                mt={-35}
+                h={50}
+                w={50}
+                p={10}
+                bg={'white'}
+                borderWidth={0.5}
+                borderColor={'gray.100'}
+                borderRadius={50}>
+                <View
+                  style={{
+                    padding: 30,
+                    width: 40,
+                    height: 40,
+                    borderRadius: 50,
+                    backgroundColor: colors.pinkNew,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
+                  <Image
+                    source={require('../assets/gridLogoNew.png')}
+                    resizeMode="contain"
+                    style={{width: 30, height: 30}}
+                  />
+                </View>
+              </Circle>
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Tab.Screen
         name="Profile"
         component={ProfileInformation}
         options={{
@@ -319,14 +362,7 @@ export default function TabNavigation(props) {
           tabBarBadgeStyle: {fontSize: 12},
         }}
       />
-      <Tab.Screen
-        name="CatandInt"
-        component={CatandInt}
-        options={{
-          tabBarBadge: '2',
-          tabBarBadgeStyle: {fontSize: 12},
-        }}
-      />
+      <Tab.Screen name="CatandInt" component={CatandInt} />
     </Tab.Navigator>
   );
 }

@@ -26,7 +26,7 @@ const Navigation = props => {
           name="Onboarding"
           component={Onboarding}
         />
-        <Stack.Screen name='ProfileInformation' component={ProfileInformation} />
+        {/* <Stack.Screen name='ProfileInformation' component={ProfileInformation} /> */}
         <Stack.Screen name='TabNavigation' component={TabNavigation} />
         {/* <Stack.Screen name='CatandInt' component={CatandInt} /> */}
         {/* <Stack.Screen name='DrawerNavigator' component={DrawerNavigator} /> */}
