@@ -8,6 +8,7 @@ import PortalScreen from '../new-screens/portal';
 import Login from '../new-screens/Login';
 import Signup from '../new-screens/Signup';
 import ProfileInformation from '../new-screens/profileInformation';
+import CatandInt from '../new-screens/CatandInt';
 
 import TabNavigation from './TabNavigation';
 //import DrawerNavigator from './DrawerNavigation';
@@ -27,6 +28,7 @@ const Navigation = props => {
         />
         <Stack.Screen name='ProfileInformation' component={ProfileInformation} />
         <Stack.Screen name='TabNavigation' component={TabNavigation} />
+        {/* <Stack.Screen name='CatandInt' component={CatandInt} /> */}
         {/* <Stack.Screen name='DrawerNavigator' component={DrawerNavigator} /> */}
 
         {/* <Stack.Screen

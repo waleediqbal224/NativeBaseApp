@@ -7,6 +7,7 @@ import {TouchableOpacity, View, Image, Text} from 'react-native';
 import Login from '../new-screens/Login';
 import Signup from '../new-screens/Signup';
 import ProfileInformation from '../new-screens/profileInformation';
+import CatandInt from '../new-screens/CatandInt';
 
 import {colors} from '../variables/colors';
 import Images from '../theme/Images';
@@ -15,6 +16,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {Center} from 'native-base';
 
 // export default function TabNavigation(props) {
 //   const Tab = createBottomTabNavigator();
@@ -242,28 +244,12 @@ import {
 export default function TabNavigation(props) {
   const Tab = createBottomTabNavigator();
   return (
-    // <NavigationContainer> //when using nesting navigators use only one NavigationContainer at root
     <Tab.Navigator
-    
-      barStyle={{
-        
-        backgroundColor: 'white',
-        borderWidth: 2,
-        position: 'absolute',
-        borderColor: colors.whiteColor,
-        height: 65,
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 12,
-        },
-        shadowOpacity: 0.58,
-        shadowRadius: 16.0,
-
-        elevation: 24,
-      }}
       screenOptions={({route}) => ({
-        tabBarHideOnKeyboard:true,
+        tabBarStyle: {
+          height: 65,
+        },
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarIcon: ({focused}) => {
           let tabLabel;
@@ -284,6 +270,10 @@ export default function TabNavigation(props) {
             tabLabel = 'Profile';
             activetabIconImg = require('../assets/chatNew.png');
             inactiveTabIconImg = require('../assets/chatNew2.png');
+          } else if (route.name === 'CatandInt') {
+            tabLabel = 'Interests';
+            activetabIconImg = require('../assets/profileNew2.png');
+            inactiveTabIconImg = require('../assets/profileNew.png');
           }
 
           return (
@@ -302,7 +292,7 @@ export default function TabNavigation(props) {
                 <Text
                   style={{
                     fontSize: 10,
-                    width: wp('8%'),
+                    width: wp('10%'),
                     marginLeft: 5,
                     color: focused ? activeColor : inactiveColor,
                   }}>
@@ -315,9 +305,28 @@ export default function TabNavigation(props) {
 
         tabBarShowLabel: false,
       })}>
-      <Tab.Screen name="Login" component={Login} />
+      <Tab.Screen
+        name="Login"
+        component={Login}
+        options={{tabBarBadge: '2', tabBarBadgeStyle: {fontSize: 12}}}
+      />
       <Tab.Screen name="Signup" component={Signup} />
-      <Tab.Screen name="Profile" component={ProfileInformation} />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileInformation}
+        options={{
+          tabBarBadge: '2',
+          tabBarBadgeStyle: {fontSize: 12},
+        }}
+      />
+      <Tab.Screen
+        name="CatandInt"
+        component={CatandInt}
+        options={{
+          tabBarBadge: '2',
+          tabBarBadgeStyle: {fontSize: 12},
+        }}
+      />
     </Tab.Navigator>
   );
 }
